@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:cycle_name",
  "creation": "2022-08-24 15:05:29.694466",
@@ -201,7 +200,7 @@
    "link_fieldname": "appraisal_cycle"
   }
  ],
- "modified": "2026-09-01 18:39:51.520758",
+ "modified": "2024-05-29 18:15:06.443594",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Appraisal Cycle",

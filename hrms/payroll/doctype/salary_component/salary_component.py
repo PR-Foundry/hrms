@@ -155,7 +155,7 @@ class SalaryComponent(Document):
 			.run(pluck=True)
 		)
 
-	@frappe.whitelist(methods=["POST"])
+	@frappe.whitelist()
 	def update_salary_structures(
 		self, field: str, value: str | int | float | None, structures: list | None = None
 	) -> None:

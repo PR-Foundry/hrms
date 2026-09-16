@@ -56,7 +56,7 @@ class JobRequisition(Document):
 			},
 		)
 
-	@frappe.whitelist(methods=["POST"])
+	@frappe.whitelist()
 	def associate_job_opening(self, job_opening: str) -> None:
 		frappe.has_permission("Job Opening", "write", job_opening, throw=True)
 		frappe.db.set_value(

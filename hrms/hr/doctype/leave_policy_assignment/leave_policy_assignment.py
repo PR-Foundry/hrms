@@ -489,7 +489,7 @@ def calculate_pro_rated_leaves(
 	return rounded(leaves)
 
 
-@frappe.whitelist(methods=["POST"])
+@frappe.whitelist()
 def create_assignment_for_multiple_employees(employees: str | list[str], data: str | dict) -> list[str]:
 	if isinstance(employees, str):
 		employees = json.loads(employees)
@@ -501,23 +501,15 @@ def create_assignment_for_multiple_employees(employees: str | list[str], data: s
 	failed = []
 
 	for employee in employees:
+		assignment = create_assignment(employee, frappe._dict(data))
 		savepoint = "before_assignment_submission"
 		try:
-			# create + submit inside the savepoint so a failure for one employee
-			# (e.g. an overlapping assignment) rolls back only that employee and
-			# doesn't abort assignment for the rest of the batch
 			frappe.db.savepoint(savepoint)
-			assignment = create_assignment(employee, frappe._dict(data))
 			assignment.submit()
 		except Exception:
 			frappe.db.rollback(save_point=savepoint)
-			frappe.log_error(
-				title="Leave Policy Assignment failed",
-				reference_doctype="Leave Policy Assignment",
-				reference_name=employee,
-			)
-			failed.append(employee)
-			continue
+			assignment.log_error("Leave Policy Assignment submission failed")
+			failed.append(assignment.name)
 
 		docs_name.append(assignment.name)
 
@@ -527,7 +519,7 @@ def create_assignment_for_multiple_employees(employees: str | list[str], data: s
 	return docs_name
 
 
-@frappe.whitelist(methods=["POST"])
+@frappe.whitelist()
 def create_assignment(employee: str, data: frappe._dict) -> Document:
 	assignment = frappe.new_doc("Leave Policy Assignment")
 	assignment.employee = employee
@@ -541,12 +533,12 @@ def create_assignment(employee: str, data: frappe._dict) -> Document:
 	return assignment
 
 
-def show_assignment_submission_status(failed_employees):
+def show_assignment_submission_status(failed):
 	frappe.clear_messages()
-	employee_links = [get_link_to_form("Employee", employee) for employee in failed_employees]
+	assignment_list = [get_link_to_form("Leave Policy Assignment", entry) for entry in failed]
 
-	msg = _("Leave policy could not be assigned to the following employees:")
-	msg += " " + comma_and(employee_links, False) + "<hr>"
+	msg = _("Failed to submit some leave policy assignments:")
+	msg += " " + comma_and(assignment_list, False) + "<hr>"
 	msg += (
 		_("Check {0} for more details")
 		.format("<a href='/app/List/Error Log?reference_doctype=Leave Policy Assignment'>{0}</a>")
@@ -556,7 +548,7 @@ def show_assignment_submission_status(failed_employees):
 	frappe.msgprint(
 		msg,
 		indicator="red",
-		title=_("Assignment Failed"),
+		title=_("Submission Failed"),
 		is_minimizable=True,
 	)
 

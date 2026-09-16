@@ -27,7 +27,7 @@ class EmployeeBoardingController(Document):
 		# create the project for the given employee onboarding
 		project_name = _(self.doctype) + " : "
 		if self.doctype == "Employee Onboarding":
-			project_name += self.job_applicant or self.employee_name
+			project_name += self.job_applicant
 		else:
 			project_name += self.employee
 

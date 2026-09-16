@@ -10,7 +10,7 @@ export const unreadNotificationsCount = createResource({
 
 export const notifications = createListResource({
 	doctype: "PWA Notification",
-	filters: { to_user: userResource.data.name, read: 0 },
+	filters: { to_user: userResource.data.name },
 	fields: [
 		"name",
 		"from_user",
@@ -21,7 +21,6 @@ export const notifications = createListResource({
 		"reference_document_name",
 	],
 	auto: false,
-	pageLength: 10,
 	cache: "hrms:notifications",
 	orderBy: "creation desc",
 	onSuccess() {

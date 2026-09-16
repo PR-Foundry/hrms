@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_import": 1,
  "autoname": "Prompt",
  "creation": "2018-02-12 15:06:18.767239",
  "doctype": "DocType",
@@ -66,7 +65,7 @@
   }
  ],
  "links": [],
- "modified": "2026-09-01 18:39:51.520758",
+ "modified": "2024-03-27 13:06:49.230881",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Daily Work Summary Group",

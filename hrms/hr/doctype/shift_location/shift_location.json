@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:location_name",
  "creation": "2024-07-04 12:12:26.894513",
@@ -67,7 +66,7 @@
    "link_fieldname": "shift_location"
   }
  ],
- "modified": "2026-09-01 18:39:51.520758",
+ "modified": "2026-08-06 13:01:43.187327",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Shift Location",

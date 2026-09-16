@@ -299,8 +299,8 @@ def get_shift_type_timing(shift_types):
 	return shift_timing_map
 
 
-def get_valid_shifts_for_time(shifts: list[dict], for_timestamp: datetime) -> list[dict]:
-	"""Returns all shifts active at the given timestamp, sorted with overlapping timings adjusted"""
+def get_shift_for_time(shifts: list[dict], for_timestamp: datetime) -> dict:
+	"""Returns shift with details for given timestamp"""
 	valid_shifts = []
 
 	for assignment in shifts:
@@ -316,12 +316,7 @@ def get_valid_shifts_for_time(shifts: list[dict], for_timestamp: datetime) -> li
 	valid_shifts.sort(key=lambda x: x["actual_start"])
 	_adjust_overlapping_shifts(valid_shifts)
 
-	return valid_shifts
-
-
-def get_shift_for_time(shifts: list[dict], for_timestamp: datetime) -> dict:
-	"""Returns shift with details for given timestamp"""
-	return get_exact_shift(get_valid_shifts_for_time(shifts, for_timestamp), for_timestamp)
+	return get_exact_shift(valid_shifts, for_timestamp)
 
 
 def _is_shift_outside_assignment_period(shift_details: dict, assignment: dict) -> bool:

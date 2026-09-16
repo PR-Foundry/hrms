@@ -91,7 +91,7 @@ class ExitInterview(Document):
 			frappe.db.set_value("Employee", self.employee, "held_on", None)
 
 
-@frappe.whitelist(methods=["POST"])
+@frappe.whitelist()
 def send_exit_questionnaire(interviews: str | list) -> None:
 	interviews = get_interviews(interviews)
 	validate_questionnaire_settings()

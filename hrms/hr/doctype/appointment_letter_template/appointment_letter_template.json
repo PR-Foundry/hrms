@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_import": 1,
  "autoname": "field:template_name",
  "creation": "2019-12-26 12:20:14.219578",
  "doctype": "DocType",
@@ -41,7 +40,7 @@
   }
  ],
  "links": [],
- "modified": "2026-09-01 18:39:51.520758",
+ "modified": "2024-03-27 13:06:31.135009",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Appointment Letter Template",

@@ -1,5 +1,4 @@
 import { toast } from "frappe-ui"
-import { __ } from "@/plugins/translationsPlugin"
 
 export function useDownloadPDF() {
 	async function downloadPDF({ doctype, docname, filename = null }) {
@@ -21,8 +20,8 @@ export function useDownloadPDF() {
 					return response.blob()
 				} else {
 					toast({
-						title: __("Download Failed"),
-						text: __("Error downloading PDF"),
+						title: "Download Failed",
+						text: `Error downloading PDF`,
 						type: "error",
 						icon: "alert-circle",
 						position: "bottom-center",

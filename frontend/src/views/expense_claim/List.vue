@@ -2,7 +2,7 @@
 	<ion-page>
 		<ListView
 			doctype="Expense Claim"
-			:pageTitle="__('Claim History')"
+			:pageTitle="('Claim History')"
 			:tabButtons="TAB_BUTTONS"
 			:fields="EXPENSE_CLAIM_FIELDS"
 			groupBy="`tabExpense Claim`.name"
@@ -36,27 +36,27 @@ const FILTER_CONFIG = [
 	{
 		fieldname: "approval_status",
 		fieldtype: "Select",
-		label: __("Approval Status"),
+		label: "Approval Status",
 		options: ["Draft", "Approved", "Rejected"],
 	},
 	{
 		fieldname: "status",
 		fieldtype: "Select",
-		label: __("Status"),
+		label: "Status",
 		options: ["Draft", "Paid", "Unpaid", "Rejected", "Submitted", "Cancelled"],
 	},
 	{
 		fieldname: "employee",
 		fieldtype: "Link",
-		label: __("Employee"),
+		label: "Employee",
 		options: "Employee",
 	},
 	{
 		fieldname: "department",
 		fieldtype: "Link",
-		label: __("Department"),
+		label: "Department",
 		options: "Department",
 	},
-	{ fieldname: "posting_date", fieldtype: "Date", label: __("Posting Date") },
+	{ fieldname: "posting_date", fieldtype: "Date", label: "Posting Date" },
 ]
 </script>

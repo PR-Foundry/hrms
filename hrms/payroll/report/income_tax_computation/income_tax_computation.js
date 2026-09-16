@@ -12,10 +12,6 @@ frappe.query_reports["Income Tax Computation"] = {
 			default: frappe.defaults.get_user_default("Company"),
 			width: "90px",
 			reqd: 1,
-			on_change: (report) => {
-				frappe.query_report.set_filter_value("employee", "");
-				report.refresh();
-			},
 		},
 		{
 			fieldname: "payroll_period",
@@ -31,13 +27,6 @@ frappe.query_reports["Income Tax Computation"] = {
 			fieldtype: "Link",
 			options: "Employee",
 			width: "90px",
-			get_query: () => {
-				return {
-					filters: {
-						company: frappe.query_report.get_filter_value("company"),
-					},
-				};
-			},
 		},
 		{
 			fieldname: "department",

@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_import": 1,
  "autoname": "HR-TRQ-.YYYY.-.#####",
  "creation": "2018-05-15 06:32:33.950356",
  "doctype": "DocType",
@@ -226,7 +225,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2026-09-01 18:39:51.520758",
+ "modified": "2024-05-24 17:09:09.480838",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Travel Request",

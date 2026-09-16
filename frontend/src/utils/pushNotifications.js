@@ -1,4 +1,3 @@
-import { __ } from "@/plugins/translationsPlugin"
 export const isChrome = () =>
 	navigator.userAgent.toLowerCase().includes("chrome")
 
@@ -22,7 +21,7 @@ export const showNotification = (payload) => {
 			notificationOptions["actions"] = [
 				{
 					action: payload.data.click_action,
-					title: __("View Details"),
+					title: "View Details",
 				},
 			]
 		}

@@ -1,7 +1,6 @@
-import { __ } from "@/plugins/translationsPlugin"
 export const showErrorAlert = async (message) => {
 	const alert = await alertController.create({
-		header: __("Error"),
+		header: "Error",
 		message,
 		buttons: ["OK"],
 	})

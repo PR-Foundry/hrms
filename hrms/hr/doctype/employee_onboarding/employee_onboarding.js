@@ -3,10 +3,18 @@
 
 frappe.ui.form.on("Employee Onboarding", {
 	setup: function (frm) {
-		frm.set_query("job_offer", function () {
+		frm.set_query("job_applicant", function () {
 			return {
 				filters: {
 					status: "Accepted",
+				},
+			};
+		});
+
+		frm.set_query("job_offer", function () {
+			return {
+				filters: {
+					job_applicant: frm.doc.job_applicant,
 					docstatus: 1,
 				},
 			};
@@ -83,11 +91,20 @@ frappe.ui.form.on("Employee Onboarding", {
 		}
 	},
 
-	job_offer: function (frm) {
-		if (frm.doc.job_offer) {
-			frappe.db.get_value("Employee", { job_offer: frm.doc.job_offer }, "name", (r) => {
-				frm.set_value("employee", r && r.name ? r.name : "");
-			});
+	job_applicant: function (frm) {
+		if (frm.doc.job_applicant) {
+			frappe.db.get_value(
+				"Employee",
+				{ job_applicant: frm.doc.job_applicant },
+				"name",
+				(r) => {
+					if (r.name) {
+						frm.set_value("employee", r.name);
+					} else {
+						frm.set_value("employee", "");
+					}
+				},
+			);
 		} else {
 			frm.set_value("employee", "");
 		}
